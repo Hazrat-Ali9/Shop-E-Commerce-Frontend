@@ -3,41 +3,48 @@ import React, { useEffect, useState } from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const Update = () => {
-    const {id} = useParams();
-    const [users,setUsers]=useState({});
-    const navigate = useNavigate()
-    useEffect(()=>{
-    const url = `https://abccomerce.onrender.com/product/${id}`
-    fetch(url)
-    .then(res =>res.json())
-    .then(data => setUsers(data))
-    },[])
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const navigate = useNavigate();
 
-    const updateUser = event =>{
-    event.preventDefault();
-    const name = event.target.name.value;
-    const description = event.target.description.value;
-    const price = event.target.price.value;
-    const category = event.target.category.value;
-    const image = event.target.image.value;
-    const user = {name,description,price,category,image};
-    const url = `https://abccomerce.onrender.com/product/${id}`;
-    console.log(url);
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result,'success');
-        navigate('/all')
-        toast("Product Updated successfully", result);
-        event.target.reset();
-      });
-    }
+  useEffect(() => {
+      const url = `https://abccomerce.onrender.com/product/${id}`;
+      fetch(url)
+          .then(res => res.json())
+          .then(data => setProduct(data))
+          .catch(error => console.error('Error fetching product:', error));
+  }, [id]);
+
+  const updateUser = event => {
+      event.preventDefault();
+      const { name, description, price, category, image } = event.target;
+
+      const updatedProduct = {
+          name: name.value || product.name,
+          description: description.value || product.description,
+          price: price.value || product.price,
+          category: category.value || product.category,
+          image: image.value || product.image
+      };
+
+      const url = `https://abccomerce.onrender.com/product/${id}`;
+
+      fetch(url, {
+          method: "PUT",
+          headers: {
+              "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedProduct),
+      })
+          .then(res => res.json())
+          .then(result => {
+              console.log(result, 'success');
+              navigate('/all');
+              toast("Product Updated successfully", result);
+              event.target.reset();
+          })
+          .catch(error => console.error('Error updating product:', error));
+  };
     return (
         <div>
            <div className="grid min-h-screen place-items-center">
@@ -55,6 +62,7 @@ const Update = () => {
             <input
               type="text"
               name="name"
+              defaultValue={product.name}
               placeholder="Input Product Name"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
              
@@ -63,6 +71,7 @@ const Update = () => {
               Description
             </label>
             <textarea
+            defaultValue={product.description}
               className="textarea textarea-bordered block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               placeholder="Type Description"
               name='description'
@@ -73,6 +82,7 @@ const Update = () => {
             <input
               type="text"
               name="price"
+              defaultValue={product.price}
               placeholder="Input Price"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               
@@ -83,6 +93,7 @@ const Update = () => {
             <input
               type="text"
               name="category"
+              defaultValue={product.category}
               placeholder="Input Category"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               
@@ -92,6 +103,7 @@ const Update = () => {
             </label>
             <input
               type="text"
+              defaultValue={product.image}
               name="image"
               placeholder="Input Image Url"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"

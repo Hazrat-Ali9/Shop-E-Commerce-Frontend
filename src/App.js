@@ -27,7 +27,6 @@ function App() {
         <Route path="/dashboard" element={<RequireAdmin><Dashboard/></RequireAdmin>}></Route>
         <Route path="/dashboard/add" element={<Add/>}></Route>
         <Route path="all/update/:id" element={<Update/>}></Route>
-
       </Routes>
       <ToastContainer/>
       <Footer/>

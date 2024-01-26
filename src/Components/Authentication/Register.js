@@ -11,6 +11,40 @@ import auth from '../../firbase.init';
 
 const Register = () => {
     const [signInWithGoogle, gLoading, gError] = useSignInWithGoogle(auth);
+    const handleGoogleSignIn = async () => {
+      try {
+          await signInWithGoogle();
+          const currentUser = auth.currentUser;
+          if (currentUser) {
+             
+              const userData = {
+                  email: currentUser.email,
+                  
+              };
+              const apiResponse = await fetch('https://abccomerce.onrender.com/user', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                     
+                  },
+                  body: JSON.stringify(userData),
+              });
+  
+              if (apiResponse.ok) {
+                  console.log('User data saved successfully');
+                  navigate("/");
+              } else {
+                  console.error('Failed to save user data to the API');
+                 
+              }
+          } else {
+              console.error('No user signed in or user data not available');
+          }
+      } catch (error) {
+          console.error('Error occurred during Google sign-in or data saving:', error);
+      }
+  };
+  
     
   const {
     register,
@@ -35,7 +69,7 @@ const Register = () => {
       </p>
     );
   }
-  navigate("/dashboard");
+  
 
   const onSubmit = async (data) => {
     
@@ -48,24 +82,21 @@ const Register = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Add any additional headers or authentication tokens as needed
         },
         body: JSON.stringify(userData),
       });
   
       if (apiResponse.ok) {
         console.log('User data saved successfully');
-        // Redirect to the dashboard after successful registration and API call
-        navigate("/dashboard");
+        navigate("/");
       } else {
         console.error('Failed to save user data to the API');
-        // Handle the error condition as needed
       }
     } catch (apiError) {
       console.error('Error occurred while saving user data to the API', apiError);
-      // Handle the error condition as needed
     }
-  };
+};
+
     return (
         <div className="flex h-screen justify-center items-center">
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -178,7 +209,7 @@ const Register = () => {
             </p>
             <div className="divider">OR</div>
             <button
-              onClick={() => signInWithGoogle()}
+              onClick={() => handleGoogleSignIn()}
               className="btn btn-outline"
             >
               Continue with Google
