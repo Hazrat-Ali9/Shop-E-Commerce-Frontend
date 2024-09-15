@@ -1,3 +1,4 @@
+// User admin
 import { useEffect, useState } from "react"
 const useAdmin = user => {
     const [admin, setAdmin] = useState(false);
@@ -5,7 +6,7 @@ const useAdmin = user => {
     useEffect( () =>{
         const email = user?.email;
         if(email){
-            fetch(`https://abccomerce.onrender.com/admin/${email}`, {
+            fetch(`http://localhost:9000/admin/${email}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',

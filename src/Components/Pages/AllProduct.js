@@ -20,7 +20,7 @@ const AllProduct = () => {
       const handleDelate = id =>{
         const proceed = window.confirm('Are You Sure Delate This ???')
         if(proceed){
-            const url = `https://abccomerce.onrender.com/product/${id}`
+            const url = `http://localhost:9000/product/${id}`
             fetch(url, {
                 method:'DELETE'
             })

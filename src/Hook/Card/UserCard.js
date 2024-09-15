@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 const UserCard = ({user,refetch}) => {
     const {email,role}=user
     const makeAdmin = () => {
-        fetch(`https://abccomerce.onrender.com/user/admin/${email}`, {
+        fetch(`http://localhost:9000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 

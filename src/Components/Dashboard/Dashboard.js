@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 import UserCard from '../../Hook/Card/UserCard';
 
 const Dashboard = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://abccomerce.onrender.com/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:9000/user', {
     method: 'GET',
     
 }).then(res => res.json()));

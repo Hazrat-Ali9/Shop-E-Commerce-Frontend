@@ -8,7 +8,7 @@ const Update = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-      const url = `https://abccomerce.onrender.com/product/${id}`;
+      const url = `http://localhost:9000/product/${id}`;
       fetch(url)
           .then(res => res.json())
           .then(data => setProduct(data))
@@ -27,7 +27,7 @@ const Update = () => {
           image: image.value || product.image
       };
 
-      const url = `https://abccomerce.onrender.com/product/${id}`;
+      const url = `http://localhost:9000/product/${id}`;
 
       fetch(url, {
           method: "PUT",

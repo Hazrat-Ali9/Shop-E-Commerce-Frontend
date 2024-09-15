@@ -5,7 +5,7 @@ const Details = () => {
   const [service, setService] = useState({});
 
   useEffect(() => {
-    const url = `https://abccomerce.onrender.com/product/${id}`;
+    const url = `http://localhost:9000/product/${id}`;
     console.log(url);
     fetch(url)
       .then((res) => res.json())

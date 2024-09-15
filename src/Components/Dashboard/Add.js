@@ -7,7 +7,7 @@ const Add = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const onSubmit = (data,event) => {
-        const url = `https://abccomerce.onrender.com/product/`;
+        const url = `http://localhost:9000/product/`;
         console.log(url)
         fetch(url,{
             method : 'POST',
