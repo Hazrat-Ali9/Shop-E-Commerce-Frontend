@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductCard from '../../Hook/Card/ProductCard';
 import useProduct from '../../Hook/useProduct';
-
+// All products
 const AllProduct = () => {
     const [products,setProduct] = useProduct();
   const categories = ["All Products","laptop", "phone", "camera"];
