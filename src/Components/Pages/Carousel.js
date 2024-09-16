@@ -55,5 +55,5 @@ const Carousel = () => {
         </div>
     );
 };
-
+// Carosel
 export default Carousel;
