@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import {useNavigate } from "react-router-dom";
-
+// Dashboard add
 const Add = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
