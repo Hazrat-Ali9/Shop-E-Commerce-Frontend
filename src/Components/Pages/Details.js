@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 const Details = () => {
   const { id } = useParams();
   const [service, setService] = useState({});
-
+// Details
   useEffect(() => {
     const url = `http://localhost:9000/product/${id}`;
     console.log(url);
