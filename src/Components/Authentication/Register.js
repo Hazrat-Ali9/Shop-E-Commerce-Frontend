@@ -219,5 +219,5 @@ const Register = () => {
       </div>
     );
 };
-
+// Register 
 export default Register;
