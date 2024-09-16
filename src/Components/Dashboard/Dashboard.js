@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from '../Loading/Loading';
 import UserCard from '../../Hook/Card/UserCard';
-
+// dashboard data
 const Dashboard = () => {
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:9000/user', {
     method: 'GET',
