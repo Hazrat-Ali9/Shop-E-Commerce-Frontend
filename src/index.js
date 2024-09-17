@@ -9,7 +9,7 @@ import {
   QueryClientProvider,
 } from 'react-query'
 const queryClient = new QueryClient()
-
+// INDEX JS
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div className='max-w-screen-2xl mx-auto'>
